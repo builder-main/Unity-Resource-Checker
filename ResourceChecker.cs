@@ -306,7 +306,11 @@ public class ResourceChecker : EditorWindow
 					for (int i = 0; i < 3; i++) //TODO Get secondaries array length instead
 					{
 						if (tSpriteRenderer.sprite.getSecondaryTexture(i) == null) continue;
-						var tSpriteSecondaryTextureDetail = GetTextureDetail(tSpriteRenderer.sprite.getSecondaryTexture(i), renderer);
+#if UNITY_2021_3
+						var tSpriteSecondaryTextureDetail = GetTextureDetail(tSpriteRenderer.sprite.getSecondaryTexture(i));
+#else
+                        var tSpriteSecondaryTextureDetail = GetTextureDetail(tSpriteRenderer.sprite.getSecondaryTexture(i), renderer);
+#endif
 						if (!ActiveTextures.Contains(tSpriteSecondaryTextureDetail)) {
 							ActiveTextures.Add(tSpriteSecondaryTextureDetail);
 						}
